@@ -29,49 +29,27 @@
                 v-for="course in courses"
                 v-bind:key="course.id"
               >
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        src="http://bulma.io/images/placeholders/1280x960.png"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-content">
-                        <p class="is-size-5">{{ course.title }}</p>
-                      </div>
-                    </div>
-
-                    <div class="content">
-                      <p>{{ course.short_description }}</p>
-                      <router-link :to="{name:'Course', params: {slug: course.slug}}">More</router-link>
-                    </div>
-                  </div>
-                </div>
+                <CourseItem :course="course" />
               </div>
-            </div>
 
-            <div class="column is-12">
-              <nav class="pagination">
-                <a class="pagination-previous">Previous</a>
-                <a class="pagination-next">Next</a>
+              <div class="column is-12">
+                <nav class="pagination">
+                  <a class="pagination-previous">Previous</a>
+                  <a class="pagination-next">Next</a>
 
-                <ul class="pagination-list">
-                  <li>
-                    <a class="pagination-link is-current">1</a>
-                  </li>
-                  <li>
-                    <a class="pagination-link">2</a>
-                  </li>
-                  <li>
-                    <a class="pagination-link">3</a>
-                  </li>
-                </ul>
-              </nav>
+                  <ul class="pagination-list">
+                    <li>
+                      <a class="pagination-link is-current">1</a>
+                    </li>
+                    <li>
+                      <a class="pagination-link">2</a>
+                    </li>
+                    <li>
+                      <a class="pagination-link">3</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
             </div>
           </div>
         </div>
@@ -83,11 +61,16 @@
 <script>
 import axios from "axios";
 
+import CourseItem from '@/components/CourseItem.vue'
+
 export default {
   data() {
     return {
       courses: [],
     };
+  },
+  components: {
+    CourseItem
   },
   mounted() {
     console.log("mounted");
